@@ -16,12 +16,14 @@ public class ColabtechApplication {
 		SpringApplication.run(ColabtechApplication.class, args);
 	}
 
+	String allowedOrigin = "http://localhost:4200/";
+
 	// Função responsável por permitir que a aplicação estabeleça suas chamadas de API sem ser interrompida pelo CORS
 	@Bean
 	public CorsFilter corsFilter() {
 		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		corsConfiguration.setAllowCredentials(true);
-		corsConfiguration.setAllowedOrigins(Arrays.asList("https://rita-cupcakestore-site-c4b28748e517.herokuapp.com"));
+		corsConfiguration.setAllowedOrigins(Arrays.asList(allowedOrigin));
 		corsConfiguration.setAllowedHeaders(Arrays.asList("Origin", "Access-Control-Allow-Origin", "Content-Type",
 				"Accept", "Authorization", "Origin, Accept", "X-Requested-With",
 				"Access-Control-Request-Method", "Access-Control-Request-Headers"));
