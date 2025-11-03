@@ -12,7 +12,8 @@ import jakarta.persistence.Id;
  * 
  * Esta classe contém o modelo de dados para um usuário. Ela conta com os mesmos
  * atributos da tabela Usuário do banco de dados e será usada ao longo da
- * aplicação para envio e recebimento de dados de usuário. Seguindo a estrutura MVC,
+ * aplicação para envio e recebimento de dados de usuário. Seguindo a estrutura
+ * MVC,
  * essa é a camada responsável pela leitura, escrita e validação de dados.
  * 
  * Implementações:
@@ -34,9 +35,6 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(nullable = false, updatable = false)
     private Long id;
-
-    @Column(nullable = false, updatable = false)
-    private String codigo;
 
     private String email;
     private String senha;
@@ -85,14 +83,6 @@ public class Usuario implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(String codigo) {
-        this.codigo = codigo;
     }
 
     public String getEmail() {

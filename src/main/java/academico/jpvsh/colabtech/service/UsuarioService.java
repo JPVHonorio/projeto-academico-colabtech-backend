@@ -36,7 +36,6 @@ public class UsuarioService {
 
     // Métodos
     public Usuario addUsuario(Usuario usuario) {
-        usuario.setCodigo(UUID.randomUUID().toString()); // O código é definido por aqui, não pelo usuário
         return usuarioRepo.save(usuario);
     }
 
@@ -58,7 +57,7 @@ public class UsuarioService {
                 .orElseThrow(() -> new UsuarioException("Este email ou senha não foi encontrado."));
     }
 
-    public void removerUsuario(Long id) {
-        usuarioRepo.deleteUsuarioById(id);
+    public void deletarUsuario(Long id) {
+        usuarioRepo.deleteUserById(id);
     }
 }

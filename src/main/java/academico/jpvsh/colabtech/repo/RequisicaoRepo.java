@@ -1,8 +1,11 @@
 package academico.jpvsh.colabtech.repo;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import academico.jpvsh.colabtech.model.Requisicao;
 import academico.jpvsh.colabtech.model.Usuario;
 
 /**
@@ -17,7 +20,7 @@ import academico.jpvsh.colabtech.model.Usuario;
  * interação com o database.
  */
 
-public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
+public interface RequisicaoRepo extends JpaRepository<Requisicao, Long> {
 
     /*
      * Métodos auto Implementados pelo Web Spring
@@ -26,7 +29,6 @@ public interface UsuarioRepo extends JpaRepository<Usuario, Long> {
      * que está escrito e fará uma auto implementação baseada no nome.
      */
 
-    void deleteUserById(Long id);
-    Optional<Usuario> findUsuarioById(Long id);
-    Optional<Usuario> findUserByEmailAndSenha (String email, String senha);
+    void deleteReqById(Long id);
+    Optional<List<Requisicao>> findReqByUsuarioId (Long usuarioId);
 }

@@ -14,18 +14,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import academico.jpvsh.colabtech.model.Usuario;
-import academico.jpvsh.colabtech.service.UsuarioService;
+import academico.jpvsh.colabtech.model.Requisicao;
+import academico.jpvsh.colabtech.service.RequisicaoService;
 
 /**
- * Classe controlador de Usuário
+ * Classe controlador de Requisição
  * 
- * Esta classe é responsável por receber todas as requisições do usuário e
+ * Esta classe é responsável por receber todas as requisições do Requisição e
  * executar a lógica de negócio, comunicando-se com o model para processamento
- * de dados e com o view para o output ao usuário. Seguindo a estrutura MVC, o
+ * de dados e com o view para o output ao Requisição. Seguindo a estrutura MVC, o
  * router * envia uma requisição ao dizendo o que deseja. O controller pede
  * dados pro model, processa esses dados e manda para o view colocar no
- * html para o usuário ver.
+ * html para o Requisição ver.
  * 
  * Implementações:
  * - Serializable -> Permite a serialização desta classe em diferentes formatos
@@ -45,51 +45,45 @@ import academico.jpvsh.colabtech.service.UsuarioService;
  */
 
 @RestController
-@RequestMapping("/usuario")
-public class UsuarioController {
+@RequestMapping("/requisicao")
+public class RequisicaoController {
 
-    private final UsuarioService usuarioService;
+    private final RequisicaoService requisicaoService;
 
     // Construtor
-    public UsuarioController(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
+    public RequisicaoController(RequisicaoService requisicaoService) {
+        this.requisicaoService = requisicaoService;
     }
 
     // Métodos
     @GetMapping
-    public ResponseEntity<List<Usuario>> obterTodosOsUsuarios() {
-        List<Usuario> usuarios = usuarioService.obterUsuarios();
-        return new ResponseEntity<>(usuarios, HttpStatus.OK);
+    public ResponseEntity<List<Requisicao>> obterTodasAsRequisicoes() {
+        List<Requisicao> reqs = requisicaoService.obterRequisicoes();
+        return new ResponseEntity<>(reqs, HttpStatus.OK);
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Usuario> obterUsuarioPeloId(@PathVariable("id") Long id) {
-        Usuario usuario = usuarioService.obterUsuarioPeloId(id);
-        return new ResponseEntity<>(usuario, HttpStatus.OK);
-    }
-
-    @PostMapping("/login")
-    public ResponseEntity<Usuario> loginUser(@RequestBody Usuario usuario) {
-        Usuario usuarioLogin = usuarioService.obterUsuarioPorEmailESenha(usuario.getEmail(), usuario.getSenha());
-        return new ResponseEntity<>(usuarioLogin, HttpStatus.OK);
+    public ResponseEntity<List<Requisicao>> obterRequisicoesDoUsuario(@PathVariable("id") Long id) {
+        List<Requisicao> reqs = requisicaoService.obterRequisicoesDoUsuario(id);
+        return new ResponseEntity<>(reqs, HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Usuario> adicionarUsuario(@RequestBody Usuario usuario) {
-        Usuario novoUsuario = usuarioService.addUsuario(usuario);
-        return new ResponseEntity<>(novoUsuario, HttpStatus.CREATED);
+    public ResponseEntity<Requisicao> adicionarRequisicao(@RequestBody Requisicao req) {
+        Requisicao novaReq = requisicaoService.addRequisicao(req);
+        return new ResponseEntity<>(novaReq, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update")
-    public ResponseEntity<Usuario> atualizarUsuario(@RequestBody Usuario usuario) {
-        Usuario usuarioAtualizado = usuarioService.atualizarUsuario(usuario);
-        return new ResponseEntity<>(usuarioAtualizado, HttpStatus.OK);
+    @PostMapping("/update")
+    public ResponseEntity<Requisicao> atualizarRequisicao(@RequestBody Requisicao req) {
+        Requisicao reqAtualizada = requisicaoService.atualizarRequisicao(req);
+        return new ResponseEntity<>(reqAtualizada, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{id}")
     @Transactional
-    public ResponseEntity<?> deletarUsuarioPeloId(@PathVariable("id") Long id) {
-        usuarioService.deletarUsuario(id);
+    public ResponseEntity<?> deletarRequisicaoPeloId(@PathVariable("id") Long id) {
+        requisicaoService.deletarRequisicao(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
