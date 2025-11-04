@@ -29,6 +29,6 @@ public interface RequisicaoRepo extends JpaRepository<Requisicao, Long> {
      * que está escrito e fará uma auto implementação baseada no nome.
      */
 
-    void deleteReqById(Long id);
+    void deleteRequisicaoById(Long id);
     Optional<List<Requisicao>> findReqByUsuarioId (Long usuarioId);
 }

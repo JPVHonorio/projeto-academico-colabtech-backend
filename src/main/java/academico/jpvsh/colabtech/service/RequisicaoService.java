@@ -55,6 +55,6 @@ public class RequisicaoService {
     }
 
     public void deletarRequisicao(Long id) {
-        RequisicaoRepo.deleteReqById(id);
+        RequisicaoRepo.deleteRequisicaoById(id);
     }
 }

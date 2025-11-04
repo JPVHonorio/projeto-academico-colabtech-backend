@@ -74,7 +74,7 @@ public class RequisicaoController {
         return new ResponseEntity<>(novaReq, HttpStatus.CREATED);
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity<Requisicao> atualizarRequisicao(@RequestBody Requisicao req) {
         Requisicao reqAtualizada = requisicaoService.atualizarRequisicao(req);
         return new ResponseEntity<>(reqAtualizada, HttpStatus.CREATED);
