@@ -1,6 +1,8 @@
 package academico.jpvsh.colabtech.model;
 
 import java.io.Serializable;
+import java.sql.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -39,7 +41,6 @@ public class Requisicao implements Serializable {
     private Long usuarioId;
 
     private String nome;
-    private Integer tipo;
     private Integer status;
     private String setor;
 
@@ -47,9 +48,8 @@ public class Requisicao implements Serializable {
     public Requisicao() {
     }
 
-    public Requisicao(String nome, Integer tipo, Integer status, String setor) {
+    public Requisicao(String nome, Integer status, String setor) {
         this.nome = nome;
-        this.tipo = tipo;
         this.status = status;
         this.setor = setor;
     }
@@ -77,14 +77,6 @@ public class Requisicao implements Serializable {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public Integer getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(Integer tipo) {
-        this.tipo = tipo;
     }
 
     public Integer getStatus() {
